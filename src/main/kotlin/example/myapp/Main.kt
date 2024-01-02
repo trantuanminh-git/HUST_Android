@@ -6,14 +6,15 @@ fun buildAquarium() {
     val myTower = TowerTank(diameter = 25, height = 40)
     myTower.printSize()
 }
-
-//fun testMySecondWithContext() {
-//    GlobalScope.lanch(Dispatcher.IO) {
-//
-//    }
-//}
-
+fun makeFish() {
+    val shark = Shark()
+    val pleco = Plecostomus()
+    println("Shark: ${shark.color}")
+    shark.eat()
+    println("Plecostomus: ${pleco.color}")
+    pleco.eat()
+}
 fun main() {
-    buildAquarium()
-//    val job1: Job =
+//    buildAquarium()
+    makeFish()
 }
