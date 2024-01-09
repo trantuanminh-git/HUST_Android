@@ -6,11 +6,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.Group
+import androidx.databinding.DataBindingUtil
+import com.example.happybirthday.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.name = "John"
         val resultTextView: TextView = findViewById(R.id.textView)
         resultTextView.text = "Goodbye!!!"
 
