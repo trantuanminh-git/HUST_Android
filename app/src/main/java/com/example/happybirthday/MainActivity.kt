@@ -2,39 +2,39 @@ package com.example.happybirthday
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.Group
-import androidx.databinding.DataBindingUtil
-import com.example.happybirthday.databinding.ActivityMainBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.name = "John"
-        val resultTextView: TextView = findViewById(R.id.textView)
-        resultTextView.text = "Goodbye!!!"
+        setContentView(R.layout.activity_main)
 
-        val button: Button = findViewById<Button>(R.id.button)
-        button.setOnClickListener(this)
+        // RecycleView, list adapter
+        val rv: RecyclerView = findViewById(R.id.rv)
+        rv.layoutManager = LinearLayoutManager(this)
+
+        rv.adapter = MyAdapter(IntRange(0, 100).toList())
     }
 
-    override fun onClick(v: View?) {
-        val group: Group = findViewById<Group>(R.id.group)
-        val button: Button = findViewById<Button>(R.id.button)
-        if (group.visibility == View.GONE) {
-            group.visibility = View.VISIBLE
-//            button.setText(R.string.hide_details)
-            button.setText("Hide details")
-        } else {
-            group.visibility = View.GONE
-//            button.setText(R.string.show_details)
-            button.setText("Show details")
-        }
-//        TODO("Not yet implemented")
+}
+// RecycleView, list adapter
+class MyAdapter(val data: List<Int>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
+        val textView = row.findViewById<TextView>(R.id.number)
     }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val layout = LayoutInflater.from(parent.context).inflate(R.layout.item_view,
+            parent, false)
+        return MyViewHolder(layout)
+    }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.textView.text = data.get(position).toString()
+    }
+    override fun getItemCount(): Int = data.size
 
 }
