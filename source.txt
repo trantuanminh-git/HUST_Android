@@ -1,1 +1,2 @@
-https://developer.android.com/codelabs/basic-android-kotlin-training-affirmations-app#1
+- recycle view: https://developer.android.com/codelabs/basic-android-kotlin-training-affirmations-app#1
+- display list of image using card: https://developer.android.com/codelabs/basic-android-kotlin-training-display-list-cards#2
